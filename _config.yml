@@ -1,10 +1,10 @@
 # Site settings
 title: 欢迎你
-SEOTitle: 王守昌的博客 | BY Blog
-header-img: img/post-bg-desk.jpg
+SEOTitle: 王守昌的博客 | wsccoder Blog
+header-img: img/post-bg-keybord.jpg
 email: wsccoder@gmail.com
-description: "Every failure is leading towards success."
-keyword: "BY, BY Blog, 王守昌的博客, wsccodre, wsc, Java, Go, iPhone"
+description: "Talk Is Cheap Show Me The Code  "
+keyword: "wsc, wsccoder Blog, 王守昌的博客, Java, Go, iPhone, mac pro, book"
 url: "http://wsccoder.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/wsccoder/wsccoder.github.io.git" # you code repository
@@ -12,7 +12,7 @@ github_repo: "https://github.com/wsccoder/wsccoder.github.io.git" # you code rep
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Stay hungry Stay foolish!"
-sidebar-avatar: /img/about-BY-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/about-wsc-gentle.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -99,11 +99,11 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "WY",
-        #href: "http://zhengwuyang.com"
+        title: "Tuya",
+        href: "http://tuya.com"
     },{
-        title: "简书·BY",
-        #href: "http://www.jianshu.com/u/e71990ada2fd"
+        title: "cctv",
+        href: "http://www.cctv.com"
     },{
         title: "Apple",
         href: "https://apple.com"
