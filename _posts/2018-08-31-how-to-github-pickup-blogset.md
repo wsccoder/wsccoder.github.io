@@ -18,15 +18,21 @@ tags:
 
 **废话少说我们下面就开始搭建博客**
 
-# 第一步 
+## 展示效果 
 
 首先我们看下博客的展示效果
 
 **网页版本的展示效果**
 
-![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuvijtk52pj3268136000.jpg)
+https://ws1.sinaimg.cn/large/005S1Oyygy1fuviuej6z5j326m14iqv5.jpg
 
 
 
 **手机版本展示效果**
+
+https://ws1.sinaimg.cn/large/005S1Oyygy1fuviywb2g2j30ly0zo7l9.jpg
+
+
+
+
 
