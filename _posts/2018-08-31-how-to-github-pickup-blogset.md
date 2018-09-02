@@ -24,13 +24,11 @@ tags:
 
 **网页版本的展示效果**
 
-https://ws1.sinaimg.cn/large/005S1Oyygy1fuviuej6z5j326m14iqv5.jpg
-
-
+![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuviuej6z5j326m14iqv5.jpg)
 
 **手机版本展示效果**
 
-https://ws1.sinaimg.cn/large/005S1Oyygy1fuviywb2g2j30ly0zo7l9.jpg
+![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuviywb2g2j30ly0zo7l9.jpg)
 
 
 
