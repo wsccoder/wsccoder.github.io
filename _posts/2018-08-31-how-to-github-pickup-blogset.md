@@ -273,3 +273,76 @@ friends: [
 
 ## 写文章
 
+在这里写文章的话就不像一般的博客网站你在后台编写或者在自己的文本编辑器上面写让后复制到后台编辑器里面。我们这里需要自己创建文件然后将你的日志文件push到你GitHub上面。
+
+**创建文章**
+
+我们创建的文章都保存在这个文件夹得下面。
+
+![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuyx27qromj31eu12eds0.jpg)
+
+
+
+
+
+*每次我们要创建发表新文章的时候止需要在这个文件夹下面创建一个新的md的文件就ok了*
+
+![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuyx5benixj31d614ek4x.jpg)
+
+
+
+我们在GItHub的界面上创建一个文章
+
+![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuyx61iq51j31f20yagz4.jpg)
+
+
+
+
+
+然后在编辑这个文章
+
+![](https://ws1.sinaimg.cn/large/005S1Oyygy1fuyx85e6uxj31do0y8ao6.jpg)
+
+
+
+之后点击保存，估计过个十几秒，你再刷新你的博客首页就能看见你发布的新文章了。
+
+**格式**
+
+每一篇文章文件命名采用的是`2017-02-04-Hello-2017.md`时间+标题的形式，空格用`-`替换连接。
+
+文件的格式是 `.md` 的 [**MarkDown**](http://sspai.com/25137/) 文件。
+
+我们的博客文章格式采用是 **MarkDown**+ **YAML** 的方式。
+
+[**YAML**](http://www.ruanyifeng.com/blog/2016/07/yaml.html?f=tt) 就是我们配置 `_config`文件用的语言。
+
+[**MarkDown**](http://sspai.com/25137/) 是一种轻量级的「标记语言」，很简单。[花半个小时看一下](http://sspai.com/25137)就能熟练使用了
+
+大概就是这么一个结构。
+
+```
+---
+layout:     post   				    # 使用的布局（不需要改）
+title:      My First Post 				# 标题 
+subtitle:   Hello World, Hello Blog #副标题
+date:       2017-02-06 				# 时间
+author:     BY 						# 作者
+header-img: img/post-bg-2015.jpg 	#这篇文章标题背景图片
+catalog: true 						# 是否归档
+tags:								#标签
+    - 生活
+---
+
+## Hey
+>  这是一遍博客
+
+ 哈哈哈哈哈  博客完成了
+```
+
+按格式创建文章后，提交保存。进入你的博客主页，新的文章将会出现在你的主页上.
+
+到这里，恭喜你！
+
+你已经成功搭建了自己的个人博客以及学会在博客上撰写文字的技能了（是不是有点小兴奋🙈）。
+
