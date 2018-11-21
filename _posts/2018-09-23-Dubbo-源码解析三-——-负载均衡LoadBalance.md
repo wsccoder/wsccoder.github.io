@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:     Dubbo 源码解析三 —— 负载均衡LoadBalance
-subtitle:    "\"  dubbo源码解析---负载均衡LoadBalance\""
-date:       2018-09-23
+title:     Dubbo 源码解析四 —— 负载均衡LoadBalance
+subtitle:    "\"  dubbo源码解析四 --- 负载均衡LoadBalance\""
+date:       2018-11-21
 author:     wangshouchang
 header-img: img/post-bg-universe.jpg
 catalog: true
@@ -59,8 +59,6 @@ tags:
 ### 权重轮询算法
 
 >轮询算法是指依次访问可用服务器列表，其和随机本质是一样的处理，在无权重因素下，轮询只是在选数轴上的点时采取自增对长度取余方式。有权重因素下依然自增取余，再看选取的点落在了哪个区域。
->
->
 
 ### 一致性Hash负载均衡算法
 
@@ -142,10 +140,10 @@ tags:
 
 >上面官网文档已经说明 Dubbo 的负载均衡算法总共有4种
 >
->- 随机算法 **RandomLoadBalance**（默认）
->- 轮训算法 **RoundRobinLoadBalance**
->- 最小活跃数算法 **LeastActiveLoadBalance**
->- 一致性hash算法 **ConsistentHashLoadBalance** 
+>- 随机算法 [**RandomLoadBalance**](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/RandomLoadBalance.java)（默认）
+>- 轮训算法 **[RoundRobinLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/test/java/org/apache/dubbo/rpc/cluster/loadbalance/RoundRobinLoadBalanceTest.java)**
+>- 最小活跃数算法 [**LeastActiveLoadBalance**](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/LeastActiveLoadBalance.java)
+>- 一致性hash算法 **[ConsistentHashLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/test/java/org/apache/dubbo/rpc/cluster/loadbalance/ConsistentHashLoadBalanceTest.java)** 
 
 **我们先看下接口的继承图**
 
@@ -157,11 +155,11 @@ tags:
 
 > Invoker select(List<Invoker> invokers, URL url, Invocation invocation) throws RpcException;
 
-LoadBalance 定义了一个方法就是从 invokers 列表中选取一个
+[LoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-config/dubbo-config-api/src/test/java/org/apache/dubbo/config/mock/MockLoadBalance.java) 定义了一个方法就是从 invokers 列表中选取一个
 
-### AbstractLoadBalance
+### [AbstractLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/AbstractLoadBalance.java)
 
-AbstractLoadBalance 抽象类是所有负载均衡策略实现类的父类，实现了LoadBalance接口 的方法，同时提供抽象方法交由子类实现，
+[AbstractLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/AbstractLoadBalance.java) 抽象类是所有负载均衡策略实现类的父类，实现了LoadBalance接口 的方法，同时提供抽象方法交由子类实现，
 
 ```java
  public <T> Invoker<T> select(List<Invoker<T>> invokers, URL url, Invocation invocation) {
@@ -179,12 +177,12 @@ AbstractLoadBalance 抽象类是所有负载均衡策略实现类的父类，实
 
 **下面对四种均衡策略依次解析**
 
-### RandomLoadBalance(随机)
+### [RandomLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/RandomLoadBalance.java)(随机)
 
 >- **随机**，按权重设置随机概率。
 >- 在一个截面上碰撞的概率高，但调用量越大分布越均匀，而且按概率使用权重后也比较均匀，有利于动态调整提供者权重。
 
- ** RandomLoadBalance#doSelect()**
+ ** [RandomLoadBalance#doSelect()*](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/RandomLoadBalance.java)*
 
 ```java
 @Override
@@ -248,7 +246,7 @@ protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation
 
 
 
-**RoundRobinLoadBalance#doSelect()(轮询)**
+**[RoundRobinLoadBalance#doSelect()(轮询)](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/test/java/org/apache/dubbo/rpc/cluster/loadbalance/RoundRobinLoadBalanceTest.java)**
 
 >- **轮询**，按公约后的权重设置轮询比率。
 >- 存在慢的提供者累积请求的问题，比如：第二台机器很慢，但没挂，当请求调到第二台时就卡在那，久而久之，所有请求都卡在调到第二台上。
@@ -327,7 +325,7 @@ protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation
 
 
 
-### LeastActiveLoadBalance(最少活跃数)
+### [LeastActiveLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/LeastActiveLoadBalance.java)(最少活跃数)
 
 >- **最少活跃调用数**，相同活跃数的随机，活跃数指调用前后计数差。
 >- 使慢的提供者收到更少请求，因为越慢的提供者的调用前后计数差会越大。
@@ -444,7 +442,7 @@ protected <T> Invoker<T> doSelect(List<Invoker<T>> invokers, URL url, Invocation
 
 
 
-### ConsistentHashLoadBalance(一致性哈希)
+### [ConsistentHashLoadBalance](https://github.com/wsccoder/incubator-dubbo/blob/master/dubbo-cluster/src/main/java/org/apache/dubbo/rpc/cluster/loadbalance/LeastActiveLoadBalance.java)(一致性哈希)
 
 >- **一致性 Hash**，相同参数的请求总是发到同一提供者。
 >- 当某一台提供者挂时，原本发往该提供者的请求，基于虚拟节点，平摊到其它提供者，不会引起剧烈变动。
